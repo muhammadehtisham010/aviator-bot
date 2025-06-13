@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: aviator-predictor
+    env: python
+    buildCommand: ""
+    startCommand: "python app.py"

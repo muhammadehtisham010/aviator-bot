@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aviator Prediction Bot</title>
+  <style>
+    body { font-family: Arial; background: #111; color: #fff; padding: 20px; }
+    .crash { margin: 5px 0; }
+    .prediction { font-size: 24px; color: #0f0; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Aviator Prediction Bot</h1>
+  <div id="crashes"></div>
+  <div class="prediction" id="prediction"></div>
+
+  <script>
+    fetch("http://127.0.0.1:5000/predict")
+      .then(res => res.json())
+      .then(data => {
+        const crashDiv = document.getElementById("crashes");
+        crashDiv.innerHTML = "<h3>Last Crashes:</h3>" + data.last_crashes.map(x => `<div class='crash'>${x}x</div>`).join('');
+        document.getElementById("prediction").innerText = "Prediction: " + data.prediction;
+      });
+  </script>
+</body>
+</html>
